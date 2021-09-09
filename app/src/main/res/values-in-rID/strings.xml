@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Github Search App</string>
+    <string name="tes">tes</string>
+    <string name="tab_follower">Pengikut</string>
+    <string name="tab_following">Diikuti</string>
+    <string name="no_followings">Pengguna belum mengikuti siapapun</string>
+    <string name="no_follower">Pengguna tidak memiliki pengikut</string>
+    <string name="hint">Masukkan Username</string>
+    <string name="Search">Cari</string>
+    <string name="gitimage">GitImage</string>
+    <string name="Username">Masukkan Username!</string>
+    <string name="user_not_found">Pengguna tidak ditemukan!</string>
+    <string name="Location">"Lokasi : "</string>
+    <string name="repo">"Repo : "</string>
+    <string name="followers">"Pengikut : "</string>
+    <string name="followings">"Diikuti : "</string>
+    <string name="company">"Perusahaan : "</string>
+</resources>

@@ -1,0 +1,22 @@
+<resources>
+    <!-- Other string resources-->
+    <string name="app_name">Github Search App</string>
+    <string name="tes">Tes</string>
+    <string name="tab_follower">Follower</string>
+    <string name="tab_following">Following</string>
+    <string name="no_follower">This user has no followers</string>
+    <string name="no_followings">This user has not follow any user </string>
+    <string name="hint">Enter a username</string>
+    <string name="Search">Search</string>
+    <string name="gitimage">GitImage</string>
+    <string name="Username">Enter username</string>
+    <string name="user_not_found">User Not Found!</string>
+    <string name="Location">"Location : "</string>
+    <string name="repo">"Repo : "</string>
+    <string name="followers">"Follower : "</string>
+    <string name="followings">"Following : "</string>
+    <string name="company">"Company : "</string>
+
+</resources>
+
+
