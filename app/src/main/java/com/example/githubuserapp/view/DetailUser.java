@@ -1,12 +1,10 @@
-package com.example.githubuserapp.View;
+package com.example.githubuserapp.view;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
@@ -18,16 +16,15 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.githubuserapp.R;
-import com.example.githubuserapp.ViewModel.DetailUserViewModel;
 import com.example.githubuserapp.utils.Constants;
+import com.example.githubuserapp.viewModel.DetailUserViewModel;
 import com.google.android.material.tabs.TabLayout;
 import com.squareup.picasso.Picasso;
 
 
-
 public class DetailUser extends AppCompatActivity {
     private DetailUserViewModel detailUserViewModel;
-    private  static Context context;
+    private static Context context;
 
     private ImageView avatar1;
     private TextView username, names, company, location, repository, follower, following;
@@ -51,7 +48,7 @@ public class DetailUser extends AppCompatActivity {
         following = findViewById(R.id.detailFollowing);
         String username = getIntent().getStringExtra(Constants.EXTRA_PERSON);
         setTitle(username);
-        
+
 
         detailUserViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(DetailUserViewModel.class);
         detailUserViewModel.SetDetailUser(username);
@@ -67,24 +64,19 @@ public class DetailUser extends AppCompatActivity {
             username.setText(user.getUsername());
             if (user.getLocation() == null) {
                 location.setVisibility(View.GONE);
-            }
-            else location.setText(getString(R.string.Location) + user.getLocation());
+            } else location.setText(getString(R.string.Location) + user.getLocation());
             if (user.getRepository() == 0) {
                 repository.setVisibility(View.GONE);
-            }
-            else repository.setText(getString(R.string.repo) + user.getRepository());
-            if (user.getFollower() == 0 ){
+            } else repository.setText(getString(R.string.repo) + user.getRepository());
+            if (user.getFollower() == 0) {
                 follower.setVisibility(View.GONE);
-            }
-            else follower.setText(getString(R.string.followers) + user.getFollower());
-            if ( user.getFollowing() == 0){
+            } else follower.setText(getString(R.string.followers) + user.getFollower());
+            if (user.getFollowing() == 0) {
                 following.setVisibility(View.GONE);
-            }
-            else following.setText(getString(R.string.followings) + user.getFollowing());
-            if (user.getCompany() == null){
+            } else following.setText(getString(R.string.followings) + user.getFollowing());
+            if (user.getCompany() == null) {
                 company.setVisibility(View.GONE);
-            }
-            else company.setText(getString(R.string.company) + user.getCompany());
+            } else company.setText(getString(R.string.company) + user.getCompany());
 
 
         });
@@ -97,8 +89,9 @@ public class DetailUser extends AppCompatActivity {
                 R.string.tab_follower,
                 R.string.tab_following
         };
+
         public SectionPagerAdapter(FragmentManager supportFragmentManager) {
-            super(supportFragmentManager,BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+            super(supportFragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         }
 
         @Override

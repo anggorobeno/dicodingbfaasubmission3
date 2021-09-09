@@ -4,10 +4,10 @@
         android:drawable="@drawable/bg_gradient"/>
     <item>
         <bitmap android:gravity="center"
-            android:src="@drawable/gitsplash" />
+            android:src="@drawable/github_splash_screen" />
     </item>
     <item android:bottom="50dp">
         <bitmap android:gravity="bottom"
-            android:src="@drawable/dicodingbgremoved"/>
+            android:src="@drawable/dicoding_logo"/>
     </item>
 </layer-list>

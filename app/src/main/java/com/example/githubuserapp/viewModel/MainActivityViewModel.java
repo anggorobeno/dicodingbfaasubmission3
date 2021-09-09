@@ -1,14 +1,14 @@
-package com.example.githubuserapp.ViewModel;
+package com.example.githubuserapp.viewModel;
+
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
-
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.githubuserapp.Api.GithubApi;
-import com.example.githubuserapp.Model.UserResponse;
-import com.example.githubuserapp.Api.RetrofitInstance;
+import com.example.githubuserapp.api.GithubApi;
+import com.example.githubuserapp.api.RetrofitInstance;
+import com.example.githubuserapp.model.UserResponse;
 import com.example.githubuserapp.utils.Constants;
 
 import java.util.Objects;
@@ -35,8 +35,7 @@ public class MainActivityViewModel extends ViewModel {
                 if (response.body() != null) {
                     userResponse.setValue(response.body());
                     Log.i("Success", String.valueOf(response.body()));
-                }
-                else {
+                } else {
                     Log.e("Can't be null", String.valueOf(response.body()));
                 }
 

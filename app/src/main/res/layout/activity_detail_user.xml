@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                app:drawableStartCompat="@drawable/copmany"
+                app:drawableStartCompat="@drawable/company_icon"
                 />
 
             <TextView
@@ -39,26 +39,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                app:drawableStartCompat="@drawable/outline_location_on_white_24dp" />
+                app:drawableStartCompat="@drawable/location_icon" />
 
             <TextView
                 android:id="@+id/detailRepository"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                app:drawableStartCompat="@drawable/baseline_android_white_24dp" />
+                app:drawableStartCompat="@drawable/repo_icon" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:id="@+id/detailFollower"
-                app:drawableStartCompat="@drawable/baseline_people_white_24dp"
+                app:drawableStartCompat="@drawable/follower_icon"
                 />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                app:drawableStartCompat="@drawable/baseline_people_white_24dp"
+                app:drawableStartCompat="@drawable/follower_icon"
                 android:id="@+id/detailFollowing"/>
 
 

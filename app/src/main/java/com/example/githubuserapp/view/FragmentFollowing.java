@@ -1,23 +1,22 @@
-package com.example.githubuserapp.View;
+package com.example.githubuserapp.view;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.githubuserapp.Adapter;
 import com.example.githubuserapp.R;
-import com.example.githubuserapp.ViewModel.FragmentFollowingViewModel;
 import com.example.githubuserapp.utils.Constants;
+import com.example.githubuserapp.viewModel.FragmentFollowingViewModel;
 
 import java.util.Objects;
 
@@ -28,6 +27,7 @@ public class FragmentFollowing extends Fragment {
     private FragmentFollowingViewModel followingViewModel;
     private ProgressBar progressBarFollowing;
     private TextView messageFollowing;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -48,14 +48,13 @@ public class FragmentFollowing extends Fragment {
     @SuppressLint("UseRequireInsteadOfGet")
     private void getFollowingData() {
         followingViewModel.getFollowingsData().observe((Objects.requireNonNull(getActivity())), user -> {
-            if (user.isEmpty()){
+            if (user.isEmpty()) {
                 messageFollowing.setText(R.string.no_followings);
                 messageFollowing.setVisibility(View.VISIBLE);
                 adapter.clearRV(user);
                 showLoading(false);
 
-            }
-            else{
+            } else {
                 adapter.setData(user);
                 recyclerView.setAdapter(adapter);
                 showLoading(false);
@@ -63,6 +62,7 @@ public class FragmentFollowing extends Fragment {
             }
         });
     }
+
     private void showLoading(Boolean state) {
         if (state) {
             progressBarFollowing.setVisibility(View.VISIBLE);
@@ -70,6 +70,7 @@ public class FragmentFollowing extends Fragment {
             progressBarFollowing.setVisibility(View.INVISIBLE);
         }
     }
+
     private void showRecyclerView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);

@@ -2,7 +2,6 @@ package com.example.githubuserapp;
 
 import android.content.Context;
 import android.content.Intent;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.githubuserapp.Model.UserInfo;
-import com.example.githubuserapp.View.DetailUser;
+import com.example.githubuserapp.model.UserInfo;
 import com.example.githubuserapp.utils.Constants;
+import com.example.githubuserapp.view.DetailUser;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -25,7 +24,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ListViewHolder> {
     private List<UserInfo> listuser;
     private final Context context;
 
-    public void setData(List<UserInfo> userInfos){
+    public void setData(List<UserInfo> userInfos) {
         this.listuser = userInfos;
         notifyDataSetChanged();
     }
@@ -35,18 +34,20 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ListViewHolder> {
         this.listuser.clear();
         notifyDataSetChanged();
     }
-    public Adapter( Context context) {
-        this.context=context;
+
+    public Adapter(Context context) {
+        this.context = context;
     }
 
 
     @Override
-    public ListViewHolder onCreateViewHolder(@NonNull  ViewGroup parent, int viewType) {
+    public ListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_github_constraint, parent, false);
-        return new ListViewHolder(view);    }
+        return new ListViewHolder(view);
+    }
 
     @Override
-    public void onBindViewHolder(@NonNull  Adapter.ListViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull Adapter.ListViewHolder holder, int position) {
         holder.bind(listuser.get(position));
         holder.listener.setOnClickListener(v -> {
             // tes MoveActivity
@@ -66,12 +67,13 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ListViewHolder> {
         return listuser.size();
     }
 
-    public class ListViewHolder extends RecyclerView.ViewHolder{
+    public class ListViewHolder extends RecyclerView.ViewHolder {
         public TextView textViewUsername;
         public TextView textViewName;
 
         public ImageView avatar;
         public CardView listener;
+
         public ListViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewUsername = itemView.findViewById(R.id.textViewUsername);
@@ -79,7 +81,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ListViewHolder> {
             avatar = itemView.findViewById(R.id.avatar);
             listener = itemView.findViewById(R.id.card_view);
         }
-        public void bind(UserInfo userInfo){
+
+        public void bind(UserInfo userInfo) {
             textViewUsername.setText(userInfo.getUsername());
             textViewName.setText("Type : " + userInfo.getType());
             Picasso.with(context)

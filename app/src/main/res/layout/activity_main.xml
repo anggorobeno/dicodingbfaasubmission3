@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:forceDarkAllowed="true"
-    tools:context=".View.MainActivity">
+    tools:context=".view.MainActivity">
 
 
     <EditText
@@ -75,7 +75,7 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:contentDescription="@string/gitimage"
-        android:src="@drawable/git"
+        android:src="@drawable/github"
         app:layout_constraintBottom_toTopOf="@+id/editTextUsername"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -100,7 +100,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableTop="@drawable/usernotfound"
+            android:drawableTop="@drawable/user_not_found"
             android:text="@string/user_not_found"
             android:textAlignment="center"
             android:textSize="21sp"

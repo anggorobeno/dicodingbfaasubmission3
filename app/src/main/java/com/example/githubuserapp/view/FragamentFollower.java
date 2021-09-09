@@ -1,13 +1,7 @@
-package com.example.githubuserapp.View;
+package com.example.githubuserapp.view;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,10 +9,15 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.githubuserapp.Adapter;
 import com.example.githubuserapp.R;
-import com.example.githubuserapp.ViewModel.FragmentFollowerViewModel;
 import com.example.githubuserapp.utils.Constants;
+import com.example.githubuserapp.viewModel.FragmentFollowerViewModel;
 
 import java.util.Objects;
 
@@ -51,17 +50,16 @@ public class FragamentFollower extends Fragment {
     }
 
     @SuppressLint("UseRequireInsteadOfGet")
-    private void getFollowerData(){
+    private void getFollowerData() {
         followerViewModel.getFollowersData().observe((Objects.requireNonNull(getActivity())), user -> {
-            if (user.isEmpty()){
+            if (user.isEmpty()) {
 
                 messageFollower.setText(R.string.no_follower);
                 messageFollower.setVisibility(View.VISIBLE);
                 adapter.clearRV(user);
                 showLoading(false);
 
-            }
-            else{
+            } else {
                 adapter.setData(user);
                 recyclerView.setAdapter(adapter);
                 showLoading(false);
@@ -69,6 +67,7 @@ public class FragamentFollower extends Fragment {
             }
         });
     }
+
     private void showLoading(Boolean state) {
         if (state) {
             progressBar.setVisibility(View.VISIBLE);
@@ -76,7 +75,8 @@ public class FragamentFollower extends Fragment {
             progressBar.setVisibility(View.INVISIBLE);
         }
     }
-    private void showRecyclerView(){
+
+    private void showRecyclerView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
         recyclerView.smoothScrollToPosition(0);

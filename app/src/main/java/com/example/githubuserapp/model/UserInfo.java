@@ -1,8 +1,8 @@
-package com.example.githubuserapp.Model;
+package com.example.githubuserapp.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class UserInfo{
+public class UserInfo {
     @SerializedName("login")
     String username;
     @SerializedName("avatar_url")

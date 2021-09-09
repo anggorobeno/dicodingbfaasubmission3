@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/f"
         android:supportsRtl="true"
         android:theme="@style/Theme.GithubUserApp">
-        <activity android:name=".View.SplashScreen"
+        <activity android:name=".view.SplashScreen"
             android:theme="@style/SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,11 +19,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".View.MainActivity">
+        <activity android:name=".view.MainActivity">
         </activity>
         <activity
-            android:name=".View.DetailUser"
-            android:parentActivityName=".View.MainActivity" />
+            android:name=".view.DetailUser"
+            android:parentActivityName=".view.MainActivity" />
     </application>
 
 </manifest>

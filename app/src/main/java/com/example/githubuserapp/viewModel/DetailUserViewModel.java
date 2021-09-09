@@ -1,4 +1,4 @@
-package com.example.githubuserapp.ViewModel;
+package com.example.githubuserapp.viewModel;
 
 import android.util.Log;
 
@@ -6,10 +6,9 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.githubuserapp.Api.GithubApi;
-import com.example.githubuserapp.Api.RetrofitInstance;
-import com.example.githubuserapp.Model.DetailUser;
-import com.example.githubuserapp.Model.UserResponse;
+import com.example.githubuserapp.api.GithubApi;
+import com.example.githubuserapp.api.RetrofitInstance;
+import com.example.githubuserapp.model.DetailUser;
 import com.example.githubuserapp.utils.Constants;
 
 import java.util.Objects;
@@ -20,9 +19,9 @@ import retrofit2.Response;
 
 public class DetailUserViewModel extends ViewModel {
     private final MutableLiveData<DetailUser> userDetail = new MutableLiveData<>();
-    public void SetDetailUser(String username){
-        requestApi(username);
 
+    public void SetDetailUser(String username) {
+        requestApi(username);
     }
 
     private void requestApi(String username) {
@@ -34,8 +33,7 @@ public class DetailUserViewModel extends ViewModel {
                 if (response.body() != null) {
                     userDetail.setValue(response.body());
                     Log.e("Success", String.valueOf(response.body()));
-                }
-                else {
+                } else {
                     Log.e("Detail User Can't be null", String.valueOf(response.body()));
                 }
             }
@@ -47,6 +45,9 @@ public class DetailUserViewModel extends ViewModel {
             }
         });
     }
-    public LiveData<DetailUser> GetDetailUser() {return userDetail;}
+
+    public LiveData<DetailUser> GetDetailUser() {
+        return userDetail;
+    }
 
 }

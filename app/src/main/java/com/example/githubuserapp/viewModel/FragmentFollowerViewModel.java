@@ -1,4 +1,4 @@
-package com.example.githubuserapp.ViewModel;
+package com.example.githubuserapp.viewModel;
 
 import android.util.Log;
 
@@ -6,9 +6,9 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.githubuserapp.Api.GithubApi;
-import com.example.githubuserapp.Api.RetrofitInstance;
-import com.example.githubuserapp.Model.UserInfo;
+import com.example.githubuserapp.api.GithubApi;
+import com.example.githubuserapp.api.RetrofitInstance;
+import com.example.githubuserapp.model.UserInfo;
 import com.example.githubuserapp.utils.Constants;
 
 import java.util.List;
@@ -23,20 +23,18 @@ public class FragmentFollowerViewModel extends ViewModel {
 
     public void SetFollowerData(String username) {
         requestApi(username);
-
     }
 
     private void requestApi(String username) {
         GithubApi githubApi = RetrofitInstance.getRetrofitInstance().create(GithubApi.class);
-        Call<List<UserInfo>> call = githubApi.getFollower(username,Constants.ApiKey);
+        Call<List<UserInfo>> call = githubApi.getFollower(username, Constants.ApiKey);
         call.enqueue(new Callback<List<UserInfo>>() {
             @Override
             public void onResponse(Call<List<UserInfo>> call, Response<List<UserInfo>> response) {
-                if(response.body() != null) {
+                if (response.body() != null) {
                     userFollowers.setValue(response.body());
                     Log.i("Success get Follower Data", String.valueOf(response.body()));
-                }
-                else{
+                } else {
                     Log.e("Follower Can't be null", String.valueOf(response.body()));
                 }
             }
@@ -48,7 +46,8 @@ public class FragmentFollowerViewModel extends ViewModel {
         });
 
     }
-    public LiveData<List<UserInfo>> getFollowersData(){
+
+    public LiveData<List<UserInfo>> getFollowersData() {
         return userFollowers;
     }
 
