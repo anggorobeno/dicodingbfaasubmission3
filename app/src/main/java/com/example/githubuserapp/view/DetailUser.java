@@ -2,9 +2,11 @@ package com.example.githubuserapp.view;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
@@ -13,11 +15,16 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.room.Room;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.githubuserapp.R;
+import com.example.githubuserapp.database.FavDAO;
+import com.example.githubuserapp.database.FavoriteDatabase;
+import com.example.githubuserapp.model.UserInfo;
 import com.example.githubuserapp.utils.Constants;
 import com.example.githubuserapp.viewModel.DetailUserViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.squareup.picasso.Picasso;
 
@@ -25,7 +32,7 @@ import com.squareup.picasso.Picasso;
 public class DetailUser extends AppCompatActivity {
     private DetailUserViewModel detailUserViewModel;
     private static Context context;
-
+    FloatingActionButton fabFavorite;
     private ImageView avatar1;
     private TextView username, names, company, location, repository, follower, following;
 
@@ -46,10 +53,35 @@ public class DetailUser extends AppCompatActivity {
         repository = findViewById(R.id.detailRepository);
         follower = findViewById(R.id.detailFollower);
         following = findViewById(R.id.detailFollowing);
+        fabFavorite = findViewById(R.id.fab_favorite);
+        UserInfo user = getIntent().getParcelableExtra(Constants.FAV_PERSON);
+        if (user != null){
+            Log.e("Error cuyyy", String.valueOf(user));
+
+        }
         String username = getIntent().getStringExtra(Constants.EXTRA_PERSON);
-        setTitle(username);
+        String uname = user.getUsername();
+        Log.e("Error cuyyy3", String.valueOf(uname));
 
+        setTitle(uname);
+        FavDAO favDAO = Room.databaseBuilder(this, FavoriteDatabase.class, "userinfo")
+                .allowMainThreadQueries()
+                .build()
+                .favDAO();
+        UserInfo check = favDAO.getUserByUsername(uname);
 
+        if (check != null) {
+            fabFavorite.setVisibility(View.GONE);
+        } else {
+            fabFavorite.setOnClickListener(view -> {
+                favDAO.insertAll(user);
+                Log.e("Error cuyyy2", String.valueOf(check));
+
+                Toast.makeText(this, R.string.succes_fav, Toast.LENGTH_SHORT).show();
+
+                fabFavorite.setVisibility(View.GONE);
+            });
+        }
         detailUserViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(DetailUserViewModel.class);
         detailUserViewModel.SetDetailUser(username);
         getUserDetail();
@@ -105,7 +137,7 @@ public class DetailUser extends AppCompatActivity {
             Fragment fragment = null;
             switch (position) {
                 case 0:
-                    fragment = new FragamentFollower();
+                    fragment = new FragmentFollower();
                     break;
                 case 1:
                     fragment = new FragmentFollowing();

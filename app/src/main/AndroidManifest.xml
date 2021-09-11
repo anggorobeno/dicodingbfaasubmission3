@@ -11,7 +11,11 @@
         android:roundIcon="@mipmap/f"
         android:supportsRtl="true"
         android:theme="@style/Theme.GithubUserApp">
-        <activity android:name=".view.SplashScreen"
+        <activity
+            android:name=".view.FavouriteUser"
+            android:exported="true" />
+        <activity
+            android:name=".view.SplashScreen"
             android:theme="@style/SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,8 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.MainActivity">
-        </activity>
+        <activity android:name=".view.MainActivity"></activity>
         <activity
             android:name=".view.DetailUser"
             android:parentActivityName=".view.MainActivity" />

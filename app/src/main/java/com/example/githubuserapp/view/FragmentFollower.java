@@ -2,7 +2,6 @@ package com.example.githubuserapp.view;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +21,7 @@ import com.example.githubuserapp.viewModel.FragmentFollowerViewModel;
 import java.util.Objects;
 
 
-public class FragamentFollower extends Fragment {
+public class FragmentFollower extends Fragment {
 
     private RecyclerView recyclerView;
     private Adapter adapter;
@@ -42,7 +41,6 @@ public class FragamentFollower extends Fragment {
 
         @SuppressLint("UseRequireInsteadOfGet")
         String username = Objects.requireNonNull(getActivity()).getIntent().getStringExtra(Constants.EXTRA_PERSON);
-        Log.e("Error Fragment", String.valueOf(username));
         followerViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(FragmentFollowerViewModel.class);
         followerViewModel.SetFollowerData(username);
         getFollowerData();

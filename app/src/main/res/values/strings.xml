@@ -16,6 +16,7 @@
     <string name="followers">"Follower : "</string>
     <string name="followings">"Following : "</string>
     <string name="company">"Company : "</string>
+    <string name="succes_fav">Succes Add Fav</string>
 
 </resources>
 

@@ -1,5 +1,6 @@
 package com.example.githubuserapp;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -51,11 +52,14 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ListViewHolder> {
         holder.bind(listuser.get(position));
         holder.listener.setOnClickListener(v -> {
             // tes MoveActivity
-            Toast.makeText(context, "You clicked " + listuser.get(position).getUsername(), Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(v.getContext(), DetailUser.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
+            UserInfo data = new UserInfo();
+            data.setUsername(listuser.get(position).getUsername());
+            data.setType(listuser.get(position).getType());
+            data.setUrl(listuser.get(position).getUrl());
             intent.putExtra(Constants.EXTRA_PERSON, listuser.get(position).getUsername());
+            intent.putExtra(Constants.FAV_PERSON, data);
 
             context.startActivity(intent);
         });
