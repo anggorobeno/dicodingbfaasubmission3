@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.githubuserapp.Adapter;
 import com.example.githubuserapp.R;
+import com.example.githubuserapp.model.UserInfo;
 import com.example.githubuserapp.utils.Constants;
 import com.example.githubuserapp.viewModel.FragmentFollowerViewModel;
 
@@ -33,14 +34,15 @@ public class FragmentFollower extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragament_follower, container, false);
+        View view = inflater.inflate(R.layout.fragment_follower, container, false);
         recyclerView = view.findViewById(R.id.rv_followers);
         messageFollower = view.findViewById(R.id.test);
         progressBar = view.findViewById(R.id.progressBarFollower);
         showRecyclerView();
 
         @SuppressLint("UseRequireInsteadOfGet")
-        String username = Objects.requireNonNull(getActivity()).getIntent().getStringExtra(Constants.EXTRA_PERSON);
+        UserInfo user = Objects.requireNonNull(getActivity()).getIntent().getParcelableExtra(Constants.FAV_PERSON);
+        String username = user.getUsername();
         followerViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(FragmentFollowerViewModel.class);
         followerViewModel.SetFollowerData(username);
         getFollowerData();

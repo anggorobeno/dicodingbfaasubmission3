@@ -2,7 +2,6 @@ package com.example.githubuserapp.view;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -32,9 +31,9 @@ import com.squareup.picasso.Picasso;
 public class DetailUser extends AppCompatActivity {
     private DetailUserViewModel detailUserViewModel;
     private static Context context;
-    FloatingActionButton fabFavorite;
+    FloatingActionButton fabFavourite;
     private ImageView avatar1;
-    private TextView username, names, company, location, repository, follower, following;
+    private TextView username, company, location, repository, follower, following;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,33 +52,26 @@ public class DetailUser extends AppCompatActivity {
         repository = findViewById(R.id.detailRepository);
         follower = findViewById(R.id.detailFollower);
         following = findViewById(R.id.detailFollowing);
-        fabFavorite = findViewById(R.id.fab_favorite);
+        fabFavourite = findViewById(R.id.fab_favorite);
         UserInfo user = getIntent().getParcelableExtra(Constants.FAV_PERSON);
-        if (user != null){
-            Log.e("Error cuyyy", String.valueOf(user));
-
-        }
-        String username = getIntent().getStringExtra(Constants.EXTRA_PERSON);
-        String uname = user.getUsername();
-        Log.e("Error cuyyy3", String.valueOf(uname));
-
-        setTitle(uname);
+        String username = user.getUsername();
+        setTitle(username);
         FavDAO favDAO = Room.databaseBuilder(this, FavoriteDatabase.class, "userinfo")
                 .allowMainThreadQueries()
                 .build()
                 .favDAO();
-        UserInfo check = favDAO.getUserByUsername(uname);
+        UserInfo cekFavourite = favDAO.getUserByUsername(username);
+        if (cekFavourite != null) {
+            fabFavourite.setImageResource(R.drawable.fab_fav_button);
+            fabFavourite.setVisibility(View.INVISIBLE);
 
-        if (check != null) {
-            fabFavorite.setVisibility(View.GONE);
-        } else {
-            fabFavorite.setOnClickListener(view -> {
-                favDAO.insertAll(user);
-                Log.e("Error cuyyy2", String.valueOf(check));
-
+        }
+        else {
+            fabFavourite.setOnClickListener(view -> {
+                favDAO.insertData(user);
                 Toast.makeText(this, R.string.succes_fav, Toast.LENGTH_SHORT).show();
-
-                fabFavorite.setVisibility(View.GONE);
+                fabFavourite.setImageResource(R.drawable.fab_fav_button);
+                fabFavourite.setVisibility(View.INVISIBLE);
             });
         }
         detailUserViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(DetailUserViewModel.class);

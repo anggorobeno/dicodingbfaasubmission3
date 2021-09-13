@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.githubuserapp.Adapter;
 import com.example.githubuserapp.R;
+import com.example.githubuserapp.model.UserInfo;
 import com.example.githubuserapp.utils.Constants;
 import com.example.githubuserapp.viewModel.FragmentFollowingViewModel;
 
@@ -38,7 +39,9 @@ public class FragmentFollowing extends Fragment {
         progressBarFollowing = view.findViewById(R.id.progressBarFollowing);
         showRecyclerView();
         @SuppressLint("UseRequireInsteadOfGet")
-        String username = Objects.requireNonNull(getActivity()).getIntent().getStringExtra(Constants.EXTRA_PERSON);
+        UserInfo user = Objects.requireNonNull(getActivity()).getIntent().getParcelableExtra(Constants.FAV_PERSON);
+        String username = user.getUsername();
+
         followingViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(FragmentFollowingViewModel.class);
         followingViewModel.SetFollowingData(username);
         getFollowingData();

@@ -17,6 +17,8 @@
     <string name="followings">"Following : "</string>
     <string name="company">"Company : "</string>
     <string name="succes_fav">Succes Add Fav</string>
+    <string name="fav_title">Favourite User</string>
+    <string name="tt">Uname</string>
 
 </resources>
 

@@ -54,12 +54,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ListViewHolder> {
             // tes MoveActivity
             Intent intent = new Intent(v.getContext(), DetailUser.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            UserInfo data = new UserInfo();
-            data.setUsername(listuser.get(position).getUsername());
-            data.setType(listuser.get(position).getType());
-            data.setUrl(listuser.get(position).getUrl());
-            intent.putExtra(Constants.EXTRA_PERSON, listuser.get(position).getUsername());
-            intent.putExtra(Constants.FAV_PERSON, data);
+            UserInfo favourite = new UserInfo();
+            favourite.setUsername(listuser.get(position).getUsername());
+            favourite.setType(listuser.get(position).getType());
+            favourite.setUrl(listuser.get(position).getUrl());
+            intent.putExtra(Constants.FAV_PERSON, favourite);
 
             context.startActivity(intent);
         });

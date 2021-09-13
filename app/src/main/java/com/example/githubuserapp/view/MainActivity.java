@@ -1,5 +1,6 @@
 package com.example.githubuserapp.view;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -7,6 +8,7 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -24,6 +26,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.githubuserapp.Adapter;
 import com.example.githubuserapp.R;
 import com.example.githubuserapp.viewModel.MainActivityViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
@@ -33,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout linearNotFound;
     private ProgressBar progressBar;
     private MainActivityViewModel mainActivityViewModel;
+    private FloatingActionButton floatingActionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +46,16 @@ public class MainActivity extends AppCompatActivity {
         searchUser = findViewById(R.id.editTextUsername);
         buttonSearch = findViewById(R.id.searchButton);
         progressBar = findViewById(R.id.progressBar);
+        floatingActionButton = findViewById(R.id.fab_favorite);
         linearNotFound = findViewById(R.id.userNotFound);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         mainActivityViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(MainActivityViewModel.class);
+        floatingActionButton.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this,FavouriteUser.class);
+            startActivity(intent);
 
+
+        });
         showRecyclerView();
         buttonSearch.setOnClickListener(v -> {
             String username = searchUser.getText().toString();
@@ -55,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 mainActivityViewModel.SetSearchData(username);
                 getUserData();
                 showLoading(true);
-
+                closeKeyboard();
             }
         });
 
@@ -65,6 +75,14 @@ public class MainActivity extends AppCompatActivity {
 
             mainActivityViewModel.SetSearchData(keepData);
             getUserData();
+        }
+    }
+
+    private void closeKeyboard() {
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
 
