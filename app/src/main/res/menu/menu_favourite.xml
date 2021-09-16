@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/deleteAllMenu"
-        android:icon="@drawable/baseline_delete_white_24dp"
+        android:icon="@drawable/delete_all"
         android:title="Item 1"
         app:showAsAction="always"/>
 </menu>
