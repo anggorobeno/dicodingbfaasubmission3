@@ -19,6 +19,9 @@
     <string name="succes_fav">Succes Add Fav</string>
     <string name="fav_title">Favourite User</string>
     <string name="tt">Uname</string>
+    <string name="detail_not_set">n/a</string>
+    <string name="content_title">HI :)</string>
+    <string name="content_text">Open me now!!!</string>
 
 </resources>
 

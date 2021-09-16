@@ -4,6 +4,11 @@
     <item
         android:id="@+id/item1"
         android:icon="@drawable/change_language_icon"
-        android:title="Item 1"
-        app:showAsAction="always" />
+        android:title="Change Language"
+        android:visible="true"
+        app:showAsAction="withText" />
+    <item
+        android:id="@+id/item2"
+        android:icon="@drawable/settings_icon"
+        android:title="App Setting" />
 </menu>

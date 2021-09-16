@@ -32,9 +32,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.mateware.snacky.Snacky;
+
 public class FavouriteUser extends AppCompatActivity {
     private RecyclerView recyclerViewFavourite;
-    private ProgressBar progressBarFavourite;
     private FavouriteAdapter adapter;
     private LinearLayout linearNotFound;
 
@@ -43,9 +44,7 @@ public class FavouriteUser extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favourite_user);
         recyclerViewFavourite = findViewById(R.id.rv_favourite);
-        progressBarFavourite = findViewById(R.id.progressBarFavourite);
         linearNotFound = findViewById(R.id.userNotFound);
-        showLoading(true);
 
         showRecyclerView();
 
@@ -60,7 +59,7 @@ public class FavouriteUser extends AppCompatActivity {
     private void deleteDB() {
         final android.app.AlertDialog.Builder deleteFavAlert = new AlertDialog.Builder(this);
         deleteFavAlert.setMessage("Are u sure?");
-        deleteFavAlert.setTitle("DELETE ALL USERS");
+        deleteFavAlert.setTitle("Delete all users");
         deleteFavAlert.setCancelable(false);
         deleteFavAlert.setPositiveButton("yes",(dialogInterface,i) -> {
         FavDAO favDAO = Room.databaseBuilder(this, FavoriteDatabase.class, "userinfo")
@@ -72,6 +71,15 @@ public class FavouriteUser extends AppCompatActivity {
         favDAO.deleteAll();
         adapter.clearRV(arrayUser);
         adapter.notifyDataSetChanged();
+            Snacky.builder()
+                    .setActivity(FavouriteUser.this)
+                    .setText("Favourite Users Has Been Deleted")
+                    .setDuration(Snacky.LENGTH_SHORT)
+                    .setActionText("OK")
+                    .success()
+                    .show();
+            linearNotFound.setVisibility(View.VISIBLE);
+
         });
         deleteFavAlert.setNegativeButton("no",((dialogInterface, i) -> deleteFavAlert.setCancelable(true)));
         deleteFavAlert.show();
@@ -95,7 +103,6 @@ public class FavouriteUser extends AppCompatActivity {
         List<UserInfo> listUserFavourite = favDAO.getFavouriteData();
         ArrayList<UserInfo> arrayUser = new ArrayList<>(listUserFavourite);
         adapter.setData(arrayUser);
-        showLoading(false);
         if (listUserFavourite.isEmpty()){
             linearNotFound.setVisibility(View.VISIBLE);
             adapter.clearRV(arrayUser);
@@ -104,13 +111,7 @@ public class FavouriteUser extends AppCompatActivity {
 
     }
 
-    private void showLoading(Boolean state) {
-        if (state) {
-            progressBarFavourite.setVisibility(View.VISIBLE);
-        } else {
-            progressBarFavourite.setVisibility(View.INVISIBLE);
-        }
-    }
+
     Menu mMenu;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

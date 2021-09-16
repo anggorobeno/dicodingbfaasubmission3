@@ -26,6 +26,8 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.mateware.snacky.Snacky;
+
 public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.ListViewHolder> {
     private ArrayList<UserInfo> listFavouriteUser;
     private final Context context;
@@ -98,7 +100,7 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.List
             deleteFavButton.setOnClickListener(view ->{
                 final android.app.AlertDialog.Builder deleteFavAlert = new AlertDialog.Builder(itemView.getContext());
                 deleteFavAlert.setMessage("Are u sure?");
-                deleteFavAlert.setTitle("DELETE");
+                deleteFavAlert.setTitle("Delete "+userInfo.getUsername());
                 deleteFavAlert.setCancelable(false);
                 deleteFavAlert.setPositiveButton("yes",(dialogInterface,i) -> {
                     FavDAO favDAO = Room.databaseBuilder(itemView.getContext(), FavoriteDatabase.class, "userinfo")
@@ -108,11 +110,21 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.List
                     favDAO.deleteUsername(userInfo.getId());
                     listFavouriteUser.remove(userInfo);
                     notifyDataSetChanged();
+                    Snacky.builder()
+                            .setView(view)
+                            .setText(userInfo.getUsername()+"Has been deleted from favourite list")
+                            .setDuration(Snacky.LENGTH_SHORT)
+                            .setActionText("OK")
+                            .success()
+                            .show();
 
                 });
                 deleteFavAlert.setNegativeButton("no",((dialogInterface, i) -> deleteFavAlert.setCancelable(true)));
                 deleteFavAlert.show();
+
             });
+
+
 
         }
     }

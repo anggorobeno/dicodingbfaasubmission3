@@ -27,6 +27,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.squareup.picasso.Picasso;
 
+import de.mateware.snacky.Snacky;
+
 
 public class DetailUser extends AppCompatActivity {
     private DetailUserViewModel detailUserViewModel;
@@ -69,7 +71,13 @@ public class DetailUser extends AppCompatActivity {
         else {
             fabFavourite.setOnClickListener(view -> {
                 favDAO.insertData(user);
-                Toast.makeText(this, R.string.succes_fav, Toast.LENGTH_SHORT).show();
+                Snacky.builder()
+                        .setActivity(DetailUser.this)
+                        .setText(username+"Has been added to favourite list")
+                        .setDuration(Snacky.LENGTH_SHORT)
+                        .setActionText("OK")
+                        .success()
+                        .show();
                 fabFavourite.setImageResource(R.drawable.fab_fav_button);
                 fabFavourite.setVisibility(View.INVISIBLE);
             });
@@ -87,16 +95,16 @@ public class DetailUser extends AppCompatActivity {
                     .into(avatar1);
             username.setText(user.getUsername());
             if (user.getLocation() == null) {
-                location.setVisibility(View.GONE);
+                location.setText(R.string.detail_not_set);
             } else location.setText(getString(R.string.Location) + user.getLocation());
             if (user.getRepository() == 0) {
-                repository.setVisibility(View.GONE);
+                repository.setText(R.string.detail_not_set);
             } else repository.setText(getString(R.string.repo) + user.getRepository());
             if (user.getFollower() == 0) {
-                follower.setVisibility(View.GONE);
+                follower.setText(R.string.detail_not_set);
             } else follower.setText(getString(R.string.followers) + user.getFollower());
             if (user.getFollowing() == 0) {
-                following.setVisibility(View.GONE);
+                following.setText(R.string.detail_not_set);
             } else following.setText(getString(R.string.followings) + user.getFollowing());
             if (user.getCompany() == null) {
                 company.setVisibility(View.GONE);

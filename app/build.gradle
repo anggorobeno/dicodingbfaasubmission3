@@ -47,7 +47,8 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.5.2'
     annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.2.0'
     annotationProcessor 'androidx.room:room-compiler:2.3.0'
-
+    implementation 'com.github.matecode:Snacky:1.1.5'
+    implementation 'com.google.android.material:material:1.4.0'
 }
 repositories {
     mavenCentral()
