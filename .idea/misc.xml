@@ -11,7 +11,7 @@
         <entry key="app/src/main/res/layout/activity_detail_user.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_favourite_user.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18" />
-        <entry key="app/src/main/res/layout/activity_reminder.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/activity_reminder.xml" value="0.25" />
         <entry key="app/src/main/res/layout/favourite_items_constraint.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_follower.xml" value="0.22" />
         <entry key="app/src/main/res/layout/item_github_constraint.xml" value="0.22" />

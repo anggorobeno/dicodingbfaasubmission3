@@ -16,11 +16,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -55,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         floatingActionButton = findViewById(R.id.fab_favorite);
         linearNotFound = findViewById(R.id.userNotFound);
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         mainActivityViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(MainActivityViewModel.class);
         floatingActionButton.setOnClickListener(view -> {
             Intent intent = new Intent(MainActivity.this,FavouriteUser.class);
@@ -162,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.item2:
-                Intent intent1 = new Intent(MainActivity.this,ReminderActivity.class);
+                Intent intent1 = new Intent(MainActivity.this, SettingActivity.class);
                 startActivity(intent1);
             default:
                 return super.onOptionsItemSelected(item);

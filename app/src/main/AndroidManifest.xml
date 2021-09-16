@@ -15,7 +15,7 @@
             android:name=".NotificationReceiver"
             android:exported="true" />
         <activity
-            android:name=".view.ReminderActivity"
+            android:name=".view.SettingActivity"
             android:exported="true" />
         <activity
             android:name=".view.FavouriteUser"

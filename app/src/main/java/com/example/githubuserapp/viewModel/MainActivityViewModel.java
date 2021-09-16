@@ -3,9 +3,11 @@ package com.example.githubuserapp.viewModel;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.LiveDataReactiveStreams;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.githubuserapp.SettingPreferences;
 import com.example.githubuserapp.api.GithubApi;
 import com.example.githubuserapp.api.RetrofitInstance;
 import com.example.githubuserapp.model.UserResponse;
@@ -19,7 +21,6 @@ import retrofit2.Response;
 
 public class MainActivityViewModel extends ViewModel {
     private final MutableLiveData<UserResponse> userResponse = new MutableLiveData<>();
-
     public void SetSearchData(String username) {
         requestApi(username);
 
